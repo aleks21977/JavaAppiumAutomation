@@ -5,6 +5,19 @@ public class MainClassTest extends MainClass
 {
 
     @Test
+    public void testGetClassString()
+    {
+        String a = this.getClassString();
+        int b = a.toLowerCase().indexOf("hello");
+        if (b == -1)
+        {
+            Assert.fail("No HELLO");
+        } else {
+            System.out.println("Yes HELLO");
+        }
+    }
+
+    @Test
     public void testGetClassNumber()
     {
         int a = this.getClassNumber();
