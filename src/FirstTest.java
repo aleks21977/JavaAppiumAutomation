@@ -132,7 +132,8 @@ public class FirstTest {
         );
 
         WebElement title_element = waitForElementPresent(
-                By.className("android.view.View"),
+//                By.className("android.view.View"),
+                By.xpath("//android.view.View[@index='0']"),
                 "Cannot find article titile",
                 15
         );
