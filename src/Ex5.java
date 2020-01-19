@@ -45,6 +45,156 @@ public class Ex5 {
 
 
     @Test
+    public void firstTest()
+    {
+        WebElement element_SKIP = driver.findElementByXPath("//*[contains(@text, 'SKIP')]");
+        element_SKIP.click();
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find Search Wikipedia input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Java",
+                "Cannot find search input",
+                5
+        );
+
+        waitForElementPresent(
+                By.xpath("//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='Object-oriented programming language']"),
+                "Cannot find 'Object-oriented programming language' topic searching by 'Java'",
+                10
+        );
+
+    }
+
+
+    @Test
+    public void testCancelSearch()
+    {
+        WebElement element_SKIP = driver.findElementByXPath("//*[contains(@text, 'SKIP')]");
+        element_SKIP.click();
+
+        waitForElementAndClick(
+                By.id("org.wikipedia:id/search_container"),
+                "Cannot find 'Search Wikipedia' input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Java",
+                "Cannot find search input",
+                5
+        );
+
+        waitForElementAndClear(
+                By.id("org.wikipedia:id/search_src_text"),
+                "Cannot find search field",
+                5
+        );
+
+        waitForElementAndClick(
+                By.className("android.widget.ImageButton"),
+                "Cannot find <- to return main page",
+                5
+        );
+
+        waitForElementNotPresent(
+                By.className("android.widget.ImageButton"),
+                "<- is still present on the page",
+                5
+        );
+    }
+
+
+    @Test
+    public void testCompareArticleTitle()
+    {
+        WebElement element_SKIP = driver.findElementByXPath("//*[contains(@text, 'SKIP')]");
+        element_SKIP.click();
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find Search Wikipedia input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Java",
+                "Cannot find search input",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='Object-oriented programming language']"),
+                "Cannot find Java Article",
+                5
+        );
+
+        WebElement title_element = waitForElementPresent(
+//                By.className("android.view.View"),
+                By.xpath("//android.view.View[@resource-id=\"content\"]/android.view.View[1]"),
+                "Cannot find article titile",
+                10
+        );
+
+        String article_title = title_element.getAttribute("text");
+        Assert.assertEquals(
+                "We see unexpected title",
+                "Java (programming language)",
+                article_title
+        );
+
+    }
+
+    @Test
+    public void testSwipeArticle()
+    {
+        WebElement element_SKIP = driver.findElementByXPath("//*[contains(@text, 'SKIP')]");
+        element_SKIP.click();
+
+        waitForElementAndClick(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Cannot find Search Wikipedia input",
+                5
+        );
+
+        waitForElementAndSendKeys(
+                By.xpath("//*[contains(@text, 'Search Wikipedia')]"),
+                "Appium",
+                "Cannot find search input",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='Appium']"),
+                "Cannot find 'Appium' in search",
+                5
+        );
+
+        waitForElementPresent(
+//                By.className("android.view.View"),
+                By.xpath("//android.view.View[@resource-id='content']/android.view.View[1]"),
+                "Cannot find article titile",
+                10
+        );
+
+
+        swipeUpToFindElement(
+                By.xpath("//*[@text='View page in browser']"),
+                "Cannot find the end of the article",
+                20
+        );
+
+
+    }
+
+    @Test
     public void saveFirstArticleToMyList()
     {
         WebElement element_SKIP = driver.findElementByXPath("//*[contains(@text, 'SKIP')]");
