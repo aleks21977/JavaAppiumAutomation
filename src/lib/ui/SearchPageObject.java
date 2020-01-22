@@ -6,21 +6,44 @@ import org.openqa.selenium.By;
 public class SearchPageObject extends MainPageObject{
 
     private static final String
-            CLICK_CKIP = "//*[contains(@text, 'SKIP')]",
+            CLICK_SKIP = "//*[contains(@text, 'SKIP')]",
             SEARCH_INIT_ELEMENT = "//*[contains(@text, 'Search Wikipedia')]",
             SEARCH_INPUT = "//*[contains(@text, 'Search Wikipedia')]",
-            SEARCH_RESULT = "//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='Object-oriented programming language']";
+            SEARCH_CANCEL_BUTTON = "android.widget.ImageButton",
+            SEARCH_RESULT_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='{SUBSTRING}']";
 
     public SearchPageObject(AppiumDriver driver)
     {
         super(driver);
     }
 
+    /* TEMPLATES METHODS */
+    private static String getResultSearchElement(String substring)
+    {
+        return SEARCH_RESULT_BY_SUBSTRING_TPL.replace("{SUBSTRING}", substring);
+    }
+    /* TEMPLATES METHODS */
+
     public void initSearchInput()
     {
-        this.waitForElementAndClick(By.xpath(CLICK_CKIP), "\"Cannot find SKIP button", 5);
+        this.waitForElementAndClick(By.xpath(CLICK_SKIP), "\"Cannot find SKIP button", 5);
         this.waitForElementAndClick(By.xpath(SEARCH_INIT_ELEMENT), "Cannot find and click search element", 5);
         this.waitForElementPresent(By.xpath(SEARCH_INIT_ELEMENT), "Cannot find search input after clicking search init element");
+    }
+
+    public void waitForCancelButtonToAppear()
+    {
+        this.waitForElementPresent(By.className(SEARCH_CANCEL_BUTTON), "Cannot find search cancel button", 5);
+    }
+
+    public void waitForCancelButtonToDisappear()
+    {
+        this.waitForElementNotPresent(By.className(SEARCH_CANCEL_BUTTON), "Search cancel button is still present", 5);
+    }
+
+    public void clickCancelSearch()
+    {
+        this.waitForElementAndClick(By.className(SEARCH_CANCEL_BUTTON), "Cannot find and click search cancel button", 5);
     }
 
     public void typeSearchLine(String search_line)
@@ -29,8 +52,15 @@ public class SearchPageObject extends MainPageObject{
 
     }
 
-    public void waitForSearchResult()
+    public void waitForSearchResult(String substring)
     {
-        this.waitForElementPresent(By.xpath(SEARCH_RESULT), "Cannot find search result");
+        String search_result_xpath = getResultSearchElement(substring);
+        this.waitForElementPresent(By.xpath(search_result_xpath), "Cannot find search result with substring " + substring);
+    }
+
+    public void clickByArticleWithSubstring(String substring)
+    {
+        String search_result_xpath = getResultSearchElement(substring);
+        this.waitForElementAndClick(By.xpath(search_result_xpath), "Cannot find and click search result with substring " + substring, 10);
     }
 }
