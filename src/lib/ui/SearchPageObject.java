@@ -12,7 +12,8 @@ public class SearchPageObject extends MainPageObject{
             SEARCH_CANCEL_BUTTON = "android.widget.ImageButton",
             SEARCH_RESULT_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='{SUBSTRING}']",
             SEARCH_RESULT_ELEMENT = "//*[@resource-id='org.wikipedia:id/search_results_list']/android.view.ViewGroup",
-            SEARCH_EMPTY_RESULT_ELEMENT = "//*[@text='No results found']";
+            SEARCH_EMPTY_RESULT_ELEMENT = "//*[@text='No results found']",
+            CLEAR_BUTTON = "//*[@resource-id='org.wikipedia:id/search_close_btn']";
 
     public SearchPageObject(AppiumDriver driver)
     {
@@ -70,6 +71,16 @@ public class SearchPageObject extends MainPageObject{
     {
         this.waitForElementPresent(
                 By.xpath(SEARCH_RESULT_ELEMENT),//"//*[@resource-id='org.wikipedia:id/search_results_list']/android.view.ViewGroup"
+                "Cannot find anything by the request ",
+                5
+        );
+        return this.getAmmountOfElements(By.xpath(SEARCH_RESULT_ELEMENT));
+    }
+
+    public int getAmmountOfFoundArticlesAfterClear()
+    {
+        this.waitForElementAndClick(
+                By.xpath(CLEAR_BUTTON),
                 "Cannot find anything by the request ",
                 5
         );
