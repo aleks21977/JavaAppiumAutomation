@@ -23,7 +23,6 @@ public class ArticleTests extends CoreTestCase
                 "Java (programming language)",
                 article_title
         );
-
     }
 
     @Test

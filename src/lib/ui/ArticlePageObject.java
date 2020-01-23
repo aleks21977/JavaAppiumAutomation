@@ -4,10 +4,13 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class ArticlePageObject extends MainPageObject{
 
     private static final String
         TITLE = "//android.view.View[@resource-id='content']/android.view.View[1]",
+        TITLE_TWO = "//android.view.View[@resource-id='content']/*[@text='Java (programming language)']",
         DESCRIPTION = "//*[@text='Object-oriented programming language']",
         FOOTER_ELEMENT = "//*[@text='View page in browser']",
         ADD_TO_MY_LIST_BUTTON = "//*[@resource-id='org.wikipedia:id/article_menu_bookmark']",
@@ -44,6 +47,7 @@ public class ArticlePageObject extends MainPageObject{
         WebElement description_element = waitForDescriptionElement();
         return description_element.getAttribute("text");
     }
+
 
     public void swipeToFooter()
     {
@@ -102,5 +106,12 @@ public class ArticlePageObject extends MainPageObject{
                 5
         );
     }
+
+    public int getAmmountOfElements()
+    {
+        List elements = driver.findElements(By.xpath(TITLE_TWO));
+        return elements.size();
+    }
+
 
 }

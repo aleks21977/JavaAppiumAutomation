@@ -25,6 +25,7 @@ public class MyListsPageObject extends MainPageObject{
         return ARTICLE_BY_DESCRIPTION_TPL.replace("{DESCRIPTION}", article_description);
     }
 
+
     public MyListsPageObject(AppiumDriver driver)
     {
         super(driver);
@@ -39,12 +40,6 @@ public class MyListsPageObject extends MainPageObject{
                 10
         );
     }
-
-//    public void waitForArticleToAppearByTitle(String article_title)
-//    {
-//        String article_xpath = getSaveArticleXpathByTitle(article_title);
-//        this.waitForElementPresent(By.xpath(article_xpath), "Cannot find saved article by title " + article_title, 10);
-//    }
 
     public void waitForArticleToAppearByDescription(String article_description)
     {
