@@ -7,7 +7,8 @@ public class MyListsPageObject extends MainPageObject{
 
     public static final String
             FOLDER_BY_NAME_TPL = "//*[@text='{FOLDER_NAME}']",
-            ARTICLE_BY_TITLE_TPL = "//*[@text='{TITLE}']";
+            ARTICLE_BY_TITLE_TPL = "//*[@text='{TITLE}']",
+            ARTICLE_BY_DESCRIPTION_TPL = "//*[@text='{DESCRIPTION}']";
 
     private static String getFolderXpathByName(String name_of_folder)//ИМЯ ПАПКИ Learning programming
     {
@@ -17,6 +18,11 @@ public class MyListsPageObject extends MainPageObject{
     private static String getSaveArticleXpathByTitle(String article_title) //НАЗВАНИЕ СТАТЬИ Java (programming language)
     {
         return ARTICLE_BY_TITLE_TPL.replace("{TITLE}", article_title);
+    }
+
+    private static String getSaveArticleXpathByDescription(String article_description) //ОПИСАНИЕ СТАТЬИ Object-oriented programming language
+    {
+        return ARTICLE_BY_DESCRIPTION_TPL.replace("{DESCRIPTION}", article_description);
     }
 
     public MyListsPageObject(AppiumDriver driver)
@@ -34,26 +40,32 @@ public class MyListsPageObject extends MainPageObject{
         );
     }
 
-    public void waitForArticleToAppearByTitle(String article_title)
+//    public void waitForArticleToAppearByTitle(String article_title)
+//    {
+//        String article_xpath = getSaveArticleXpathByTitle(article_title);
+//        this.waitForElementPresent(By.xpath(article_xpath), "Cannot find saved article by title " + article_title, 10);
+//    }
+
+    public void waitForArticleToAppearByDescription(String article_description)
     {
-        String article_xpath = getSaveArticleXpathByTitle(article_title);
-        this.waitForElementPresent(By.xpath(article_xpath), "Cannot find saved article by title " + article_title, 10);
+        String description_xpath = getSaveArticleXpathByDescription(article_description);
+        this.waitForElementPresent(By.xpath(description_xpath), "Cannot find saved article by title " + article_description, 10);
     }
 
-    public void waitForArticleToDisappearByTitle(String article_title)
+    public void waitForArticleToDisappearByTitle(String article_description)
     {
-        String article_xpath = getSaveArticleXpathByTitle(article_title);
-        this.waitForElementNotPresent(By.xpath(article_xpath), "Saved article still present with title " + article_title, 10);
+        String description_xpath = getSaveArticleXpathByDescription(article_description);
+        this.waitForElementNotPresent(By.xpath(description_xpath), "Saved article still present with title " + article_description, 10);
     }
 
-    public void swipeByArticleToDelete(String article_title)
+    public void swipeByArticleToDelete(String article_description)
     {
-        this.waitForArticleToAppearByTitle(article_title);
-        String article_xpath = getSaveArticleXpathByTitle(article_title);
+        this.waitForArticleToAppearByDescription(article_description);
+        String description_xpath = getSaveArticleXpathByDescription(article_description);
         this.swipeElementToLeft(
-                By.xpath(article_xpath),//"//*[@text='Object-oriented programming language']"
+                By.xpath(description_xpath),//"//*[@text='Object-oriented programming language']"
                 "Cannot find save article"
         );
-        this.waitForArticleToDisappearByTitle(article_title);
+        this.waitForArticleToDisappearByTitle(article_description);
     }
 }

@@ -8,7 +8,7 @@ public class ArticlePageObject extends MainPageObject{
 
     private static final String
         TITLE = "//android.view.View[@resource-id='content']/android.view.View[1]",
-    
+        DESCRIPTION = "//*[@text='Object-oriented programming language']",
         FOOTER_ELEMENT = "//*[@text='View page in browser']",
         ADD_TO_MY_LIST_BUTTON = "//*[@resource-id='org.wikipedia:id/article_menu_bookmark']",
         GOT_IT_OVERLAY = "//*[@resource-id='org.wikipedia:id/onboarding_button']",
@@ -32,6 +32,17 @@ public class ArticlePageObject extends MainPageObject{
     {
         WebElement title_element = waitForTitleElement();
         return title_element.getAttribute("text");
+    }
+
+    public WebElement waitForDescriptionElement()
+    {
+        return this.waitForElementPresent(By.xpath(DESCRIPTION), "Cannot find article description on page!", 10);
+    }
+
+    public String getArticleDescription()
+    {
+        WebElement description_element = waitForDescriptionElement();
+        return description_element.getAttribute("text");
     }
 
     public void swipeToFooter()
