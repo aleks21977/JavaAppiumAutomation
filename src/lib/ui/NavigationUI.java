@@ -14,14 +14,18 @@ public class NavigationUI extends MainPageObject{
         super(driver);
     }
 
-    public void clickMyList()
+    public void clickNoThanks()
     {
         this.waitForElementAndClick(
                 By.xpath(CLICK_NO_THANKS),//"//*[@text='NO THANKS']"
                 "Cannot find button 'Create new'",
                 5
         );
+    }
 
+
+    public void clickMyList()
+    {
         this.waitForElementAndClick(
                 By.xpath(MY_LISTS_LINK),//"//android.widget.FrameLayout[@content-desc='My lists']"
                 "Cannot find navigation button to my list",

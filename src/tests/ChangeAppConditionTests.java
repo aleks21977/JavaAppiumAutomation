@@ -12,6 +12,7 @@ public class ChangeAppConditionTests extends CoreTestCase
     public void testChangeScreenOrientationOnSeacrhResults()
     {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.clickSkip();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
@@ -19,7 +20,7 @@ public class ChangeAppConditionTests extends CoreTestCase
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
         String title_before_rotation = ArticlePageObject.getArticleTitle();
         this.rotateScreenLandscape();
-        //try{Thread.sleep(2000);}  catch (Exception e){}//пауза
+        try{Thread.sleep(2000);}  catch (Exception e){}//пауза
         String title_after_rotation = ArticlePageObject.getArticleTitle();
 
         assertEquals(
@@ -29,7 +30,7 @@ public class ChangeAppConditionTests extends CoreTestCase
         );
 
         this.rotateScreenPortrait();
-        //try{Thread.sleep(2000);}  catch (Exception e){}//пауза
+        try{Thread.sleep(2000);}  catch (Exception e){}//пауза
         String title_after_second_rotation = ArticlePageObject.getArticleTitle();
 
         assertEquals(
@@ -43,6 +44,7 @@ public class ChangeAppConditionTests extends CoreTestCase
     @Test
     public void testCheckSearchArticleInBackground() {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.clickSkip();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.waitForSearchResult("Object-oriented programming language");

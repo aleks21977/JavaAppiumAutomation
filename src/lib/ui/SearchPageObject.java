@@ -27,9 +27,13 @@ public class SearchPageObject extends MainPageObject{
     }
     /* TEMPLATES METHODS */
 
-    public void initSearchInput()
+    public void clickSkip()
     {
         this.waitForElementAndClick(By.xpath(CLICK_SKIP), "\"Cannot find SKIP button", 5);
+    }
+
+    public void initSearchInput()
+    {
         this.waitForElementAndClick(By.xpath(SEARCH_INIT_ELEMENT), "Cannot find and click search element", 5);
         this.waitForElementPresent(By.xpath(SEARCH_INIT_ELEMENT), "Cannot find search input after clicking search init element");
     }
@@ -65,6 +69,11 @@ public class SearchPageObject extends MainPageObject{
     {
         String search_result_xpath = getResultSearchElement(substring);
         this.waitForElementAndClick(By.xpath(search_result_xpath), "Cannot find and click search result with substring " + substring, 10);
+    }
+
+    public void clickByArticleWithAppium()
+    {
+        this.waitForElementAndClick(By.xpath("//*[@resource-id='org.wikipedia:id/page_list_item_title'][@text='Appium']"), "Cannot find and click search Appium", 10);
     }
 
     public int getAmmountOfFoundArticles()

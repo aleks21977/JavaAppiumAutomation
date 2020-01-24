@@ -11,6 +11,7 @@ public class SearchTests extends CoreTestCase
     public void testSearch()
     {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.clickSkip();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.waitForSearchResult("Object-oriented programming language");
@@ -21,6 +22,7 @@ public class SearchTests extends CoreTestCase
     public void testCancelSearch()
     {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.clickSkip();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.waitForCancelButtonToAppear();
@@ -33,6 +35,7 @@ public class SearchTests extends CoreTestCase
     public void testAmountOfNotEmpty()
     {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.clickSkip();
         SearchPageObject.initSearchInput();
         String search_line = "Linkin park discography";
         SearchPageObject.typeSearchLine(search_line);
@@ -48,6 +51,7 @@ public class SearchTests extends CoreTestCase
     public void testAmountOfEmptySearch()
     {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.clickSkip();
         SearchPageObject.initSearchInput();
         String search_line = "dfsdhtrhsath";
         SearchPageObject.typeSearchLine(search_line);

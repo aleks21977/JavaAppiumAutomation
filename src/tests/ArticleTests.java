@@ -11,6 +11,7 @@ public class ArticleTests extends CoreTestCase
     public void testCompareArticleTitle()
     {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.clickSkip();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
@@ -29,6 +30,7 @@ public class ArticleTests extends CoreTestCase
     public void testSwipeArticle()
     {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.clickSkip();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Appium");
         SearchPageObject.clickByArticleWithSubstring("Appium");

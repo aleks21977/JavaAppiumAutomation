@@ -58,7 +58,7 @@ public class ArticlePageObject extends MainPageObject{
         );
     }
 
-    public void addArticleToMyList(String name_of_folder)
+    public void addArticleOneToMyList(String name_of_folder)
     {
         //кликаем по кнопке добавить в избранное
         this.waitForElementAndClick(
@@ -93,6 +93,23 @@ public class ArticlePageObject extends MainPageObject{
         this.waitForElementAndClick(
                 By.xpath(MY_LIST_OK_BUTTON),//"//*[@text='OK']"
                 "Cannot press OK button",
+                5
+        );
+
+    }
+
+    public void addArticleToMyList(String name_of_folder)
+    {
+        //кликаем по кнопке добавить в избранное
+        this.waitForElementAndClick(
+                By.xpath(ADD_TO_MY_LIST_BUTTON),//"//*[@resource-id='org.wikipedia:id/article_menu_bookmark']"
+                "Cannor find button to add article to reading list",
+                5
+        );
+
+        waitForElementAndClick(
+                By.xpath("//*[@text='Learning programming']"),
+                "Cannor find save list 'Learning programming'",
                 5
         );
 

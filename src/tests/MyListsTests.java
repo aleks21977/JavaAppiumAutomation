@@ -14,6 +14,7 @@ public class MyListsTests extends CoreTestCase
     public void testSaveFirstArticleToMyList()
     {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.clickSkip();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
@@ -24,16 +25,17 @@ public class MyListsTests extends CoreTestCase
         String article_description = ArticlePageObject.getArticleDescription();
         String name_of_folder = "Learning programming";
 
-        ArticlePageObject.addArticleToMyList(name_of_folder);
+        ArticlePageObject.addArticleOneToMyList(name_of_folder);
         ArticlePageObject.closeArticle();
 
         NavigationUI NavigationUI = new NavigationUI(driver);
+        NavigationUI.clickNoThanks();
         NavigationUI.clickMyList();
 
         MyListsPageObject MyListsPageObject = new MyListsPageObject(driver);
         try{Thread.sleep(3000);}  catch (Exception e){}//пауза
         MyListsPageObject.openFolderByName(name_of_folder);
         //try{Thread.sleep(2000);}  catch (Exception e){}//пауза
-        MyListsPageObject.swipeByArticleToDelete(article_description);
+        MyListsPageObject.swipeByArticleOneToDelete(article_description);
     }
 }
