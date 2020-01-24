@@ -9,6 +9,7 @@ public class Ex6 extends CoreTestCase
     public void testAssertTitle()
     {
         SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject.clickSkip();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java");
         SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");

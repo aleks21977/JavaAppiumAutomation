@@ -13,7 +13,8 @@ public class SearchPageObject extends MainPageObject{
             SEARCH_RESULT_BY_SUBSTRING_TPL = "//*[@resource-id='org.wikipedia:id/search_results_list']//*[@text='{SUBSTRING}']",
             SEARCH_RESULT_ELEMENT = "//*[@resource-id='org.wikipedia:id/search_results_list']/android.view.ViewGroup",
             SEARCH_EMPTY_RESULT_ELEMENT = "//*[@text='No results found']",
-            CLEAR_BUTTON = "//*[@resource-id='org.wikipedia:id/search_close_btn']";
+            CLEAR_BUTTON = "//*[@resource-id='org.wikipedia:id/search_close_btn']",
+            ARTICLE_BY_DESCRIPTION_AND_TITLE = "//android.view.ViewGroup/android.widget.TextView[@text='{TITLE}']/../android.widget.TextView[@text='{DESCRIPTION}']";
 
     public SearchPageObject(AppiumDriver driver)
     {
@@ -24,6 +25,11 @@ public class SearchPageObject extends MainPageObject{
     private static String getResultSearchElement(String substring)
     {
         return SEARCH_RESULT_BY_SUBSTRING_TPL.replace("{SUBSTRING}", substring);
+    }
+
+    private static String getResultSearchTitleAndDescription(String title, String description)
+    {
+        return ARTICLE_BY_DESCRIPTION_AND_TITLE.replace("{TITLE}", title).replace( "{DESCRIPTION}", description);
     }
     /* TEMPLATES METHODS */
 
@@ -63,6 +69,12 @@ public class SearchPageObject extends MainPageObject{
     {
         String search_result_xpath = getResultSearchElement(substring);
         this.waitForElementPresent(By.xpath(search_result_xpath), "Cannot find search result with substring " + substring);
+    }
+
+    public void waitForElementByTitleAndDescription(String title, String description)
+    {
+        String search_result_xpath = getResultSearchTitleAndDescription(title, description);
+        this.waitForElementPresent(By.xpath(search_result_xpath), "\nCannot find search result with Title '" + title + "' and Description '" + description + "'.\n");
     }
 
     public void clickByArticleWithSubstring(String substring)
