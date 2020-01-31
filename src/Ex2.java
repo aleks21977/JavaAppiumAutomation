@@ -1,5 +1,6 @@
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import lib.CoreTestCase;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,36 +13,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.URL;
 
-public class Ex2 {
-
-    private AppiumDriver driver;
-
-    @Before
-    public void setUp() throws Exception
-    {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-
-        capabilities.setCapability("platformName","Android");
-        capabilities.setCapability("deviceName","AndroidTestDevice");
-        capabilities.setCapability("platformVersion","8.0.0");
-        capabilities.setCapability("automationName","Appium");
-        capabilities.setCapability("appPackage","org.wikipedia");
-        capabilities.setCapability("appActivity",".main.MainActivity");
-        capabilities.setCapability("app","E:\\!Software_Testing\\!!GitHub\\JavaAppiumAutomation\\apks\\org.wikipedia.apk");
-        //capabilities.setCapability("app","/Users/perekcicdservicemanager/Desktop/JavaAppiumAutomation/apks/org.wikipedia.apk");
-
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-    }
-
-    @After
-    public void tearDown()
-    {
-        driver.quit();
-    }
-
-
+public class Ex2 extends CoreTestCase
+{
     @Test
-    public void ex2Test()
+    public void testEx2Test()
     {
         WebElement element_SKIP = driver.findElementByXPath("//*[contains(@text, 'SKIP')]");
         element_SKIP.click();
@@ -58,6 +33,7 @@ public class Ex2 {
                 10
         );
         String search_text = title_element.getAttribute("text");
+        try{Thread.sleep(3000);}  catch (Exception e){}//пауза
         Assert.assertEquals(
                 "Cannot find Search Wikipedia text",
                 "Search Wikipedia",
@@ -97,5 +73,4 @@ public class Ex2 {
         element.sendKeys(value);
         return element;
     }
-
 }

@@ -15,9 +15,9 @@ public class Ex6 extends CoreTestCase
         SearchPageObject.clickByArticleWithSubstring("Object-oriented programming language");
 
         ArticlePageObject ArticlePageObject = new ArticlePageObject(driver);
-        //try{Thread.sleep(5000);}  catch (Exception e){}//пауза
+        //try{Thread.sleep(3000);}  catch (Exception e){}//пауза
         int ammount_need_title = ArticlePageObject.getAmmountOfElements();
-        //System.out.print(ammount_need_title);
+        //System.out.print("Found article title =" + ammount_need_title);
         assertTrue(
                 "Ammount article title != 1",
                 ammount_need_title == 1

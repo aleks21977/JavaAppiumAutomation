@@ -77,6 +77,7 @@ public class CoreTestCase extends TestCase {
         return capabilities;
     }
 
+    //private AppiumDriver startDriverByPlatformEnv(DesiredCapabilities capabilities) throws Exception {
     private void startDriverByPlatformEnv(DesiredCapabilities capabilities) throws Exception {
         String platform = System.getenv("PLATFORM");
 

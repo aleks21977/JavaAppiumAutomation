@@ -6,8 +6,8 @@ import org.openqa.selenium.By;
 public class NavigationUI extends MainPageObject{
 
     private static final String
-            CLICK_NO_THANKS = "//*[@text='NO THANKS']",
-            MY_LISTS_LINK = "//android.widget.FrameLayout[@content-desc='My lists']";
+            CLICK_NO_THANKS = "xpath://*[@text='NO THANKS']",
+            MY_LISTS_LINK = "xpath://android.widget.FrameLayout[@content-desc='My lists']";
 
     public NavigationUI(AppiumDriver driver)
     {
@@ -17,7 +17,7 @@ public class NavigationUI extends MainPageObject{
     public void clickNoThanks()
     {
         this.waitForElementAndClick(
-                By.xpath(CLICK_NO_THANKS),//"//*[@text='NO THANKS']"
+                CLICK_NO_THANKS,//"//*[@text='NO THANKS']"
                 "Cannot find button 'Create new'",
                 5
         );
@@ -27,7 +27,7 @@ public class NavigationUI extends MainPageObject{
     public void clickMyList()
     {
         this.waitForElementAndClick(
-                By.xpath(MY_LISTS_LINK),//"//android.widget.FrameLayout[@content-desc='My lists']"
+                MY_LISTS_LINK,//"//android.widget.FrameLayout[@content-desc='My lists']"
                 "Cannot find navigation button to my list",
                 5
         );
