@@ -1,5 +1,6 @@
 .idea/
 apks/
+out/
 
 # Compiled class file
 *.class
