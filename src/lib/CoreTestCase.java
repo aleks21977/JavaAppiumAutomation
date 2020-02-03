@@ -85,6 +85,8 @@ public class CoreTestCase extends TestCase {
             driver = new AndroidDriver(new URL(AppiumURL), capabilities);
         } else if (platform.equals(PLATFORM_IOS)) {
             driver = new IOSDriver(new URL(AppiumURL), capabilities);
+        }else {
+            throw new Exception("Cannot get run platform from driver variable. Platform value " + platform);
         }
     }
 }
