@@ -1,5 +1,6 @@
 import lib.CoreTestCase;
 import lib.ui.SearchPageObject;
+import lib.ui.factories.SearchPageObjectFactory;
 import org.junit.Test;
 
 public class Ex9 extends CoreTestCase {
@@ -7,7 +8,7 @@ public class Ex9 extends CoreTestCase {
     @Test
     public void testEx9()
     {
-        SearchPageObject SearchPageObject = new SearchPageObject(driver);
+        SearchPageObject SearchPageObject = SearchPageObjectFactory.get(driver);
         SearchPageObject.clickSkip();
         SearchPageObject.initSearchInput();
         SearchPageObject.typeSearchLine("Java"); //для вывода одного результата поиска ввести Discografia complena
