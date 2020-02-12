@@ -16,6 +16,9 @@ import java.util.regex.Pattern;
 
 public class MainPageObject {
 
+//    private static final String
+//            DELETE_ARTICLE_BUTTON = "xpath:";
+
     protected AppiumDriver driver;
 
     public MainPageObject(AppiumDriver driver)
@@ -41,7 +44,7 @@ public class MainPageObject {
 
     public WebElement waitForElementAndClick(String locator, String error_message, long timeoutInSeconds)
     {
-        WebElement element =  waitForElementPresent(locator, error_message, 5);
+        WebElement element =  waitForElementPresent(locator, error_message, 10);
         element.click();
         return element;
     }
@@ -49,7 +52,7 @@ public class MainPageObject {
     public WebElement waitForElementAndSendKeys(String locator, String value, String error_message, long timeoutInSeconds)
     {
         WebElement element =  waitForElementPresent(locator, error_message, 5);
-        element.sendKeys(value);
+        element.sendKeys(value);//  через использование sendValue вместо sendKeys
         return element;
     }
 
@@ -119,6 +122,7 @@ public class MainPageObject {
         int upper_y = element.getLocation().getY();
         int lower_y = upper_y + element.getSize().getHeight();
         int middle_y = (upper_y + lower_y) / 2;
+        //System.out.println("left_x =" + left_x + "; right_x =" + right_x + "; upper_y =" + upper_y + "; lower_y =" + lower_y + "; middle_y =" + middle_y);
 
         TouchAction action = new TouchAction(driver);
         action
@@ -127,6 +131,26 @@ public class MainPageObject {
                 .moveTo(PointOption.point(left_x, middle_y))
                 .release()
                 .perform();
+        try{Thread.sleep(2000);}  catch (Exception e){}//пауза
+        right_x = right_x + 60;
+        action
+                .tap(PointOption.point(right_x, middle_y))
+                .perform();
+    }
+
+    public void clickForDelete(String locator, String error_massage)
+    {
+        waitForElementPresent(
+                locator,
+                error_massage,
+                5
+        );
+        this.waitForElementAndClick(
+                locator,
+                "Cannot delete article, cannot find Delete button",
+                3
+        );
+
 
     }
 

@@ -15,7 +15,8 @@ abstract public class SearchPageObject extends MainPageObject{
             SEARCH_EMPTY_RESULT_ELEMENT,
             CLEAR_BUTTON,
             ARTICLE_BY_DESCRIPTION_AND_TITLE,
-            ARTICLE_BY_NAME_APPIUM;
+            ARTICLE_BY_NAME_APPIUM,
+            ARTICLE_BY_NAME_JAVA;
 
     public SearchPageObject(AppiumDriver driver)
     {
@@ -89,10 +90,16 @@ abstract public class SearchPageObject extends MainPageObject{
         this.waitForElementAndClick(ARTICLE_BY_NAME_APPIUM, "Cannot find and click search Appium", 10);
     }
 
+    public void clickByArticleWithJava()
+    {
+        this.waitForElementAndClick(ARTICLE_BY_NAME_JAVA, "Cannot find and click search Java", 10);
+    }
+
+
     public int getAmmountOfFoundArticles()
     {
         this.waitForElementPresent(
-                SEARCH_RESULT_ELEMENT,//"//*[@resource-id='org.wikipedia:id/search_results_list']/android.view.ViewGroup"
+                SEARCH_RESULT_ELEMENT,
                 "Cannot find anything by the request ",
                 5
         );
@@ -111,7 +118,7 @@ abstract public class SearchPageObject extends MainPageObject{
 
     public void waitForEmtyResultsLabel()
     {
-        this.waitForElementPresent(SEARCH_EMPTY_RESULT_ELEMENT, "Cannot find empty result element.", 5);
+        this.waitForElementPresent(SEARCH_EMPTY_RESULT_ELEMENT, "Cannot find empty result element.", 10);
 
 
     }
