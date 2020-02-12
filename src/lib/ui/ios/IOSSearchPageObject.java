@@ -11,10 +11,10 @@ public class IOSSearchPageObject extends SearchPageObject
         SEARCH_INPUT = "xpath://XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]//XCUIElementTypeSearchField";//верно
         SEARCH_CANCEL_BUTTON = "id:Close";
         SEARCH_RESULT_BY_SUBSTRING_TPL = "xpath://XCUIElementTypeLink[contains(@name,'{SUBSTRING}')]";
-        SEARCH_RESULT_ELEMENT = "xpath://XCUIElementTypeWindow[1]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell";
+        SEARCH_RESULT_ELEMENT = "xpath://XCUIElementTypeButton[@name='Close']/../../XCUIElementTypeOther[2]/XCUIElementTypeOther[2]//XCUIElementTypeCell";
         SEARCH_EMPTY_RESULT_ELEMENT = "xpath://XCUIElementTypeStaticText[@name='No results found']";//верно
         CLEAR_BUTTON = "xpath://XCUIElementTypeButton[@name='clear mini']";
-        ARTICLE_BY_DESCRIPTION_AND_TITLE = "//XCUIElementTypeLink[@name='Java (programming language) Object-oriented programming language']";
+        ARTICLE_BY_DESCRIPTION_AND_TITLE = "xpath://XCUIElementTypeLink[@name='{TITLE}\n{DESCRIPTION}']";
         ARTICLE_BY_NAME_APPIUM = "xpath://XCUIElementTypeLink[@name='Appium']";
         ARTICLE_BY_NAME_JAVA = "xpath://XCUIElementTypeLink[contains(@name,'Java (programming language)')]";
     }
